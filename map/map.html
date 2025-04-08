@@ -16,6 +16,12 @@
 </head>
 <body>
     <h1>Map viewer</h1>
+
+    <input type="text" id="searchField" name="searchField">
+    <input type="button" value="Search" onclick="onClickSearch(document.getElementById('searchField').value)">
+
+
+
     <div id="map"></div>
 </body>
 <script src="map.js">
