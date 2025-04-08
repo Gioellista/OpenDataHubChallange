@@ -1,1 +1,37 @@
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+}
 
+.buttonBar {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.buttonPrimary {
+    margin: 3px;
+    min-height: 64px;
+    min-width: 256px;
+    border-radius: 5px;
+    outline: none;
+
+    color: aliceblue;
+    font-size: 22px;
+
+    background-color: darkgreen;
+
+    border-width: 0px;
+}
+
+.buttonPrimary:hover {
+    background-color: rgb(18, 148, 18);
+    cursor: pointer;
+}
+
+.buttonPrimary:active {
+    background-color: rgb(0, 48, 0);
+    cursor: pointer;
+}

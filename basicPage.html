@@ -7,14 +7,19 @@
     <title>Progetto opendatahub</title>
 </head>
 <body>
-    <h1>Webcam Viewer</h1>
-    <button id="buttonClear" onclick="onClickChangeWebcamPage(-1)">Previous</button>
-    <button id="buttonClear" onclick="onClickChangeWebcamPage(1)">Next</button>
-    <table id="table" style="margin-left: auto; margin-right: auto">
-    </table>
-    <img id="provaImmagine" src="" />
-    <button id="buttonClear" onclick="onClickChangeWebcamPage(-1)">Previous</button>
-    <button id="buttonClear" onclick="onClickChangeWebcamPage(1)">Next</button>
+    <div class="mainContainer">
+        <h1>Webcam Viewer</h1>
+        <div class="buttonBar">
+            <button class="buttonPrimary" id="buttonClear" onclick="onClickChangeWebcamPage(-1)">Previous</button>
+            <button class="buttonPrimary" id="buttonClear" onclick="onClickChangeWebcamPage(1)">Next</button>
+        </div>
+        <table id="table" style="margin-left: auto; margin-right: auto"></table>
+        <img id="provaImmagine" src="" />
+        <div class="buttonBar">
+            <button class="buttonPrimary" id="buttonClear" onclick="onClickChangeWebcamPage(-1)">Previous</button>
+            <button class="buttonPrimary" id="buttonClear" onclick="onClickChangeWebcamPage(1)">Next</button>
+        </div>
+    </div>
 </body>
 <script src="script.js">
 </script>
