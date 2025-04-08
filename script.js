@@ -36,7 +36,7 @@ function fillTable (testo) {
     // Add some bold text in the new cell:
     cell.innerHTML = "<b>Name</b>";
     cell1.innerHTML = "<b>Image</b>";
-    cell2.innerHTML = "<b>Status</b>";
+    cell2.innerHTML = "<b>Availability</b>";
 
     for (let i = 0; i<obj.Items.length; i++){
 
@@ -61,7 +61,7 @@ function fillTable (testo) {
         if(imgInGallery) {
             cell3.innerHTML = "ok";
         } else {
-            cell3.innerHTML = "error";
+            cell3.innerHTML = "not in gallery";
         }
     }
 }
