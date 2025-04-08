@@ -1,4 +1,4 @@
-var theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo";
+var theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo?pagenumber=1&pagesize=50&active=true&fields=ImageGallery&fields=Shortname&removenullvalues=true&getasidarray=false";
 
 
     var xmlHttp = new XMLHttpRequest();
@@ -13,7 +13,6 @@ var theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo";
     xmlHttp.send(null);
 
 function fillTable (testo) {
-    console.log("gozzo");
     const obj = JSON.parse(testo);
    
     var table = document.getElementById("table");
@@ -45,10 +44,9 @@ function fillTable (testo) {
         // Add some text to the new cells:
 
         cell1.innerHTML = obj.Items[i].Shortname;
-        cell2.innerHTML = "<img id='provaImmagine' src='" + obj.Items[i].ImageGallery[0].ImageUrl +"'/>" ;
+        cell2.innerHTML = "<img id='provaImmagine' width = 200px src='" + obj.Items[i].ImageGallery[0].ImageUrl +"'/>" ;
 
     }
 
     
 }
-
