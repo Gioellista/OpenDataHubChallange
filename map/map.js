@@ -7,6 +7,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo?pagenumber=1&pagesize=0&fields=ImageGallery&fields=GpsInfo&fields=Shortname&rawfilter=isnotnull%28ImageGallery.0%29&removenullvalues=true&getasidarray=false";
     
+request(theUrl);
 
 
 
@@ -16,12 +17,15 @@ function request(theUrl){
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             fillMap(xmlHttp.responseText);
         }
-            
+        
     }
     xmlHttp.open("GET", theUrl, true); 
     xmlHttp.send(null);
 }
 
+
+
+var markers = [];
 
 function fillMap (testo) {
 
@@ -36,23 +40,20 @@ function fillMap (testo) {
 
         var marker = L.marker([obj.Items[i].GpsInfo[0].Latitude, obj.Items[i].GpsInfo[0].Longitude]).addTo(map);
         marker.bindPopup("<h1>"+ obj.Items[i].Shortname + "</h1><img id='provaImmagine' width=250px src='" + obj.Items[i].ImageGallery[0].ImageUrl +"'/>");
-        console.log(obj.Items[i].Shortname)
+        console.log(obj.Items[i].Shortname);
+
+        markers.push(marker);
 
     }
 }
 
 function onClickSearch(field){
-    //cancella tutti i marker
-    var map = L.map('map').setView([46.498112, 11.35478], 12);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-    
-    //rifai richiesta con altro link
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].remove();
+    }
 
 
+    theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo?pagenumber=1&pagesize=0&fields=ImageGallery&fields=GpsInfo&fields=Shortname&searchfilter="+encodeURIComponent(field)+"&rawfilter=isnotnull%28ImageGallery.0%29&removenullvalues=true&getasidarray=false";
+
+    request(theUrl);
 }
-
