@@ -1,5 +1,7 @@
-var theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo?pagenumber=1&pagesize=50&active=true&fields=ImageGallery&fields=Shortname&removenullvalues=true&getasidarray=false";
+var theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo?pagenumber=1&pagesize=20&active=true&fields=Shortname&fields=ImageGallery&removenullvalues=true&getasidarray=false";
 
+    var currentPage = 1;
+    var table = document.getElementById("table");
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
@@ -15,8 +17,7 @@ var theUrl = "https://tourism.api.opendatahub.com/v1/WebcamInfo?pagenumber=1&pag
 function fillTable (testo) {
     const obj = JSON.parse(testo);
    
-    var table = document.getElementById("table");
-    
+    table.innerHTML = "";
 
     // Create an empty <thead> element and add it to the table:
     var header = table.createTHead();
@@ -47,6 +48,25 @@ function fillTable (testo) {
         cell2.innerHTML = "<img id='provaImmagine' width = 200px src='" + obj.Items[i].ImageGallery[0].ImageUrl +"'/>" ;
 
     }
+}
 
+function onClickChangeWebcamPage(direction){
+
+    if(direction == 1){
+        currentPage = currentPage+1;
+    } else if (direction == -1){
+        if(currentPage == 1){
+            return;
+        }
+        currentPage = currentPage-1;
+    }
+
+	var str1 = "https://tourism.api.opendatahub.com/v1/WebcamInfo?pagenumber=";
+	var str2 = "&pagesize=20&active=true&fields=Shortname&fields=ImageGallery&removenullvalues=true&getasidarray=false";
+	var nextRequest = str1 + currentPage + str2;
+	
+    xmlHttp.open("GET", nextRequest, true); 
+    xmlHttp.send(null);
     
+    fillTable();
 }
